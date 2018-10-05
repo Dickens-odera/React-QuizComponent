@@ -16,12 +16,15 @@ class Quiz extends Component {
     })
   }
 
+  handleResetClick() {
+    this.setState({ quiz_position: 1})
+  }
   render() {
     const isQuizEnd = ((this.state.quiz_position - 1) ===
     quizData.quiz_questions.length)
     return (
       <div>
-        {isQuizEnd ? <QuizEnd /> :
+        {isQuizEnd ? <QuizEnd resetClickHandler={this.handleResetClick.bind(this)}/> :
           <QuizQuestion quiz_question={quizData.quiz_questions
           [this.state.quiz_position - 1]} showNextQuestionHandler=
           {this.showNextQuestion.bind(this)} />}
